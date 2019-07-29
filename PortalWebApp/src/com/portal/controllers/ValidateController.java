@@ -37,6 +37,7 @@ public class ValidateController extends HttpServlet {
 			session.setAttribute("userName",r.getEmployeeName());
 			session.setAttribute("user",r);
 			session.setAttribute("pass", pass);
+			session.setAttribute("idSession", empId);
 			
 			if(r.getRole().equals("Admin"))
 			{

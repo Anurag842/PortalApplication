@@ -11,9 +11,6 @@
 		<tr>
 			<a href="UpdateProfile.jsp">2. Update Profile</a>
 		</tr><br>
-		<tr>
-			<a href="DeleteProfile.jsp">3. Delete Profile</a>
-		</tr><br>
 		
 		
 	</table>

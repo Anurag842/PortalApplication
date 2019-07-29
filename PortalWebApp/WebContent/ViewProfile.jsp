@@ -26,7 +26,10 @@
 			<td>Password - <%=session.getAttribute("pass") %></td>
 		</tr>
 		
-	</table>
+	</table><br>
+	<form action="delete">
+	<button type="submit">Delete Profile</button>
+	</form>
 	
 </body>
 </html>

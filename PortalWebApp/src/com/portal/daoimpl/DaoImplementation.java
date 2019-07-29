@@ -102,7 +102,26 @@ public class DaoImplementation implements EmployeeDao {
 
 	@Override
 	public boolean deleteEmployee(int empid) {
-		// TODO Auto-generated method stub
+		try (Connection conn=ConnectionCreator.getDBConnection();)
+		{
+			PreparedStatement ps=conn.prepareStatement("delete from logintab where empid=?");
+			ps.setInt(1, empid);
+			int i=ps.executeUpdate();
+			
+			PreparedStatement ps2=conn.prepareStatement("delete from employeetab where empid=?");
+			ps2.setInt(1, empid);
+			int j=ps2.executeUpdate();
+			
+			if(i!=0 && j!=0)
+			{
+				return true;
+			}
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return false;
 	}
 
