@@ -1,11 +1,14 @@
 package com.portal.controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.portal.daoimpl.DaoImplementation;
 import com.portal.daos.EmployeeDao;
@@ -18,42 +21,34 @@ public class UpdateController extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session=request.getSession();
+		
 		String name=request.getParameter("upempName");
     	String gender=request.getParameter("upgender");
     	String qual=request.getParameter("upqual");
     	String contact=request.getParameter("upcontactNo");
     	String email=request.getParameter("upemail");
     	String password=request.getParameter("uppsw");
-    	
+    	int employeeId=(int) session.getAttribute("idSession");
     	Employee emp=new Employee();
         
-		if(name != null)
-		{
-			emp.setEmployeeName(name);
-		}
-		if(gender != null)
-		{
-			emp.setGender(gender);
-		}
-		if(qual != null)
-		{
-			emp.setQualification(qual);
-		}
-		if(contact != null)
-		{
-			emp.setContactNo(contact);
-		}
-		if(email != null)
-		{
-			emp.setEmailAddress(email);
-		}
-		if(password != null)
-		{
+    	emp.setEmployeeName(name);
+		emp.setGender(gender);
+		emp.setQualification(qual);
+		emp.setContactNo(contact);
+		emp.setEmailAddress(email);
 		emp.setPassword(password);
-		}
+		emp.setEmployeeId(employeeId);
 		
 		EmployeeDao daoObj=new DaoImplementation();
 		boolean r=daoObj.updateEmployee(emp);
+		
+		if(r==true)
+		{
+			RequestDispatcher rd=request.getRequestDispatcher("UpdateSuccess.jsp");
+			rd.forward(request, response);
+			
+		}
 		
 		
 	}

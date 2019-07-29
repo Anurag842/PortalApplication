@@ -91,6 +91,24 @@ public class DaoImplementation implements EmployeeDao {
 	public boolean updateEmployee(Employee emp) {
 		try (Connection conn=ConnectionCreator.getDBConnection();)
 		{
+			PreparedStatement ps=conn.prepareStatement("update employeetab set ename=?,gender=?,qualification=?,contactno=?,email=? where empid=?");
+			ps.setString(1, emp.getEmployeeName());
+			ps.setString(2, emp.getGender());
+			ps.setString(3, emp.getQualification());
+			ps.setString(4, emp.getContactNo());
+			ps.setString(5, emp.getEmailAddress());
+			ps.setInt(6, emp.getEmployeeId());
+			int i=ps.executeUpdate();
+			
+			
+			ps=conn.prepareStatement("update logintab set password=? where empid=?");
+			ps.setString(1, emp.getPassword());
+			ps.setInt(2, emp.getEmployeeId());
+			int j=ps.executeUpdate();
+			if(i!=0 && j!=0)
+			{
+				return true;
+			}
 			
 		}
 		catch(Exception e)
