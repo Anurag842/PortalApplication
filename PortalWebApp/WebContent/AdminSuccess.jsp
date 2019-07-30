@@ -9,11 +9,9 @@
 			<td><a href="viewall">1. View All Employees</a></td>
 		</tr>
 		<tr>
-			<td>3. Search Employee By Id</td>
+			<td><a href="SearchEmployee.jsp">2. Search Employees</a></td>
 		</tr>
-		<tr>
-			<td>4. Change your Password</td>
-		</tr>
+	
 	</table>
 	
 </body>

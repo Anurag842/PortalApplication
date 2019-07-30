@@ -40,13 +40,20 @@
 				<tr>
 					<td>Set Password : </td>
 					<td>
-						<input type="password" name="psw" placeholder="Enter password" required/>
+						<input type="password" name="psw" placeholder="Enter password" id="ps1" required/>
+					</td>
+				</tr>
+				<tr>
+				<tr>
+					<td>Confirm Password : </td>
+					<td>
+						<input type="password" name="psw" placeholder="Enter password" id="ps2" required/>
 					</td>
 				</tr>
 				<tr>
 				<td></td>
 					<td colspan="2">
-						<input type="submit" value="Register"/>
+						<input type="submit" value="Register" onclick="check()"/>
  					</td>
 				</tr>
 			</table>
@@ -54,6 +61,17 @@
 	</fieldset>
 	
 	</div>
-
+<script>
+	
+	function check()
+	{
+		 var pass1=document.getElementById("ps1").value;
+         var pass2=document.getElementById("ps2").value;
+         if(pass1!=pass2)
+         {
+             alert("Enter valid matching passwords");
+         }
+	}
+</script>
 </body>
 </html>

@@ -85,7 +85,45 @@ public class DaoImplementation implements EmployeeDao {
 
 	@Override
 	public Employee getEmployeeById(int empId) {
-		
+		try (Connection conn=ConnectionCreator.getDBConnection();)
+		{
+			PreparedStatement ps=conn.prepareStatement("select Empid,role,ename,gender,qualification,contactno,email,password from employeetab join logintab using(empid) where empid=?");
+			ps.setInt(1, empId);
+			ResultSet rs=ps.executeQuery();
+			System.out.println("input is "+empId);
+			
+			if(rs.next())
+				{
+					int empid=rs.getInt(1);
+					String role=rs.getString(2);
+					String name=rs.getString(3);
+					String gender=rs.getString(4);
+					String q=rs.getString(5);
+					String contactNo=rs.getString(6);
+					String email=rs.getString(7);
+					String password=rs.getString(8);
+					
+					System.out.println("inside rs next"+empid);
+					Employee emp=new Employee();
+					emp.setEmployeeId(empid);
+					emp.setRole(role);
+					emp.setEmployeeName(name);
+					emp.setGender(gender);
+					emp.setEmailAddress(email);
+					emp.setQualification(q);
+					emp.setContactNo(contactNo);
+					emp.setPassword(password);
+					return emp;
+				}
+			
+			
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return null;
 	}
 
