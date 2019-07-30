@@ -3,6 +3,7 @@ package com.portal.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.portal.daos.EmployeeDao;
@@ -48,7 +49,7 @@ public class DaoImplementation implements EmployeeDao {
 		try (Connection conn=ConnectionCreator.getDBConnection();)
 		{
 			System.out.println("Enters connection");
-			PreparedStatement ps=conn.prepareStatement("select Empid,ename,gender,qualification,contactno,email,role from employeetab join logintab using(empid) where empid=? and password=?");
+			PreparedStatement ps=conn.prepareStatement("select Empid,ename,gender,qualification,contactno,email,role,password from employeetab join logintab using(empid) where empid=? and password=?");
 			ps.setInt(1, empId);
 			ps.setString(2, password);
 			ResultSet rs=ps.executeQuery();
@@ -70,6 +71,7 @@ public class DaoImplementation implements EmployeeDao {
 				emp.setQualification(q);
 				emp.setContactNo(contactNo);
 				emp.setRole(role);
+				emp.setPassword(rs.getString(8));
 				System.out.println(name+gender);
 				return emp;
 			}
@@ -89,6 +91,7 @@ public class DaoImplementation implements EmployeeDao {
 
 	@Override
 	public boolean updateEmployee(Employee emp) {
+		System.out.println("Password in DAO : "+emp.getPassword());
 		try (Connection conn=ConnectionCreator.getDBConnection();)
 		{
 			PreparedStatement ps=conn.prepareStatement("update employeetab set ename=?,gender=?,qualification=?,contactno=?,email=? where empid=?");
@@ -104,6 +107,8 @@ public class DaoImplementation implements EmployeeDao {
 			ps=conn.prepareStatement("update logintab set password=? where empid=?");
 			ps.setString(1, emp.getPassword());
 			ps.setInt(2, emp.getEmployeeId());
+			
+			
 			int j=ps.executeUpdate();
 			if(i!=0 && j!=0)
 			{
@@ -145,8 +150,44 @@ public class DaoImplementation implements EmployeeDao {
 
 	@Override
 	public List<Employee> getAllEmployee() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> eList=new ArrayList<>();
+		try (Connection conn=ConnectionCreator.getDBConnection();)
+		{
+			PreparedStatement ps=conn.prepareStatement("select empid,EName,Gender,Qualification,ContactNo,Email,Role,password from EmployeeTab join LoginTab using(EmpId)");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				
+				System.out.println("I m  in while loop");
+				int empId=rs.getInt(1);
+				String name=rs.getString(2);
+				String gender=rs.getString(3);
+				String q=rs.getString(4);
+				String contactNo=rs.getString(5);
+				String email=rs.getString(6);
+				String role=rs.getString(7);
+				
+				Employee emp=new Employee();
+
+				emp.setEmployeeId(empId);
+				emp.setEmployeeName(name);
+				emp.setGender(gender);
+				emp.setEmailAddress(email);
+				emp.setQualification(q);
+				emp.setContactNo(contactNo);
+				emp.setRole(role);
+				emp.setPassword(rs.getString(8));
+				
+				eList.add(emp);
+				
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return eList;
 	}
 
 }

@@ -40,6 +40,8 @@ public class UpdateController extends HttpServlet {
 		emp.setPassword(password);
 		emp.setEmployeeId(employeeId);
 		
+		System.out.println("Password in controller : "+password);
+		
 		EmployeeDao daoObj=new DaoImplementation();
 		boolean r=daoObj.updateEmployee(emp);
 		

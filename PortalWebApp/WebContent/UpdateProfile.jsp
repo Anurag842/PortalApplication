@@ -1,5 +1,9 @@
 <jsp:include page="Header.jsp"/>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="com.portal.entities.*" %>
+
 <%Employee e=(Employee)session.getAttribute("user"); %>
 	<fieldset>
 		<legend>Update Profile</legend>
@@ -8,7 +12,7 @@
 				<tr>
 					<td>Update Name : </td>
 					<td>
-						<input type="text" name="upempName" placeholder="Enter name" value=<%= e.getEmployeeName() %>>
+						<input type="text" name="upempName" placeholder="Enter name" value="${user.employeeName}" %>
 					</td>
 				</tr>
 				<tr>
@@ -22,27 +26,26 @@
 				<tr>
 					<td>Update Qualification : </td>
 					<td>
-						<input type="text" name="upqual" placeholder="Enter qualification" value=<%= e.getQualification() %> >
+						<input type="text" name="upqual" placeholder="Enter qualification" value="${user.qualification}" % >
 					</td>
 				</tr>
 				<tr>
 				<tr>
 					<td>Update Contact no : </td>
 					<td>
-						<input type="text" name="upcontactNo" placeholder="Enter contact" value=<%= e.getContactNo() %> >
+						<input type="text" name="upcontactNo" placeholder="Enter contact" value="${user.contactNo}" % >
 					</td>
 				</tr>
 				<tr>
 					<td>Update email : </td>
 					<td>
-						<input type="text" name="upemail" placeholder="Enter emailid" value=<%= e.getEmailAddress() %>>
+						<input type="text" name="upemail" placeholder="Enter emailid" value="${user.emailAddress}" %>
 					</td>
 				</tr>
 				<tr>
 					<td>Update Password : </td>
 					<td>
-						<input type="password" name="uppsw" placeholder="Enter password" value=<%= e.getPassword() %>>
-					</td>
+						<input type="password" name="uppsw" placeholder="Enter password" value="${user.password}" %>
 				</tr>
 				<tr>
 				<td></td>

@@ -1,29 +1,29 @@
 <jsp:include page="Header.jsp"/>
 <%@ page import="com.portal.entities.*" %>
-<%Employee e=(Employee)session.getAttribute("user"); %>
 
-<h3>Welcome <%=session.getAttribute("userName") %></h3>
+
+<h3>Welcome ${user.employeeName}</h3>
 	
 	<br/>
 	
 	<table>
 		<tr>
-			<td>Name -  <%= e.getEmployeeName() %> </td>
+			<td>Name -  ${user.employeeName} </td>
 		</tr>
 		<tr>
-			<td>Gender - <%=e.getGender() %></td>
+			<td>Gender - ${user.gender}</td>
 		</tr>
 		<tr>
-			<td>Qualification - <%=e.getQualification() %></td>
+			<td>Qualification - ${user.qualification}</td>
 		</tr>
 		<tr>
-			<td>Contact no - <%=e.getContactNo() %></td>
+			<td>Contact no - ${user.contactNo}</td>
 		</tr>
 		<tr>
-			<td>Email id - <%=e.getEmailAddress()%></td>
+			<td>Email id - ${user.emailAddress}</td>
 		</tr>
 		<tr>
-			<td>Password - <%=session.getAttribute("pass") %></td>
+			<td>Password -${user.password}</td>
 		</tr>
 		
 	</table><br>

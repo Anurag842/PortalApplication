@@ -1,6 +1,6 @@
 <jsp:include page="Header.jsp"/>
 
-	<h3>Welcome <%=session.getAttribute("userName") %></h3>
+	<h3>Welcome ${sessionScope.user.employeeName}</h3>
 	
 	<br/>
 	
