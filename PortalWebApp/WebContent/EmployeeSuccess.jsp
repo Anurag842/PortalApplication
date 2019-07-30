@@ -11,7 +11,12 @@
 		<tr>
 			<a href="UpdateProfile.jsp">2. Update Profile</a>
 		</tr><br>
-		
+		<tr>
+			<a href="AddAddress.jsp">3. Add Address</a>
+		</tr><br>
+		<tr>
+			<a href="UpdateAddress.jsp">4. Update Address</a>
+		</tr><br>
 		
 	</table>
 	
