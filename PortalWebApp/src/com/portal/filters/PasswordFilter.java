@@ -21,8 +21,9 @@ public class PasswordFilter implements Filter {
 
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		
+		chain.doFilter(request, response);
+
+		System.out.println("inside passwordfilter");
 	}
 
 	

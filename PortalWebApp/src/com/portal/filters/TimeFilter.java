@@ -35,7 +35,7 @@ public class TimeFilter implements Filter {
 		int hr=ldt.getHour();
 		System.out.println("dofilter");
 		
-		if(hr>=9 && hr<=17)
+		if(hr>=0 && hr<=17)
 		{
 			chain.doFilter(request, response);
 		}
